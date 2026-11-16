@@ -26,3 +26,18 @@ enemigo = Personaje("Slime", 50, 5, 1)
 while jugador.vida >= 0 and enemigo.vida >= 0:
     jugador.atacar(enemigo)
     enemigo.atacar(jugador) 
+#clase mago (herencia)
+class Mago(Personaje):
+    def __init__(self, nombre, vida, ataque, defensa, mana):
+        super().__init__(nombre, vida, ataque, defensa)
+        self.mana = mana
+    def atacar_magia(self, objetivo):
+        if self.mana >= 5:
+            self.mana -= 5
+            objetivo.vida -= self.ataque * 2 - objetivo.defensa
+            print(
+                f"{self.nombre} lanza un hechizo a {objetivo.nombre} "
+                f"y causa {self.ataque * 2} de daño"
+            )
+        else:
+            print(f"{self.nombre} no tiene suficiente mana para atacar")
